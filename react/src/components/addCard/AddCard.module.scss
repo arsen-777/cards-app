@@ -1,0 +1,27 @@
+.addCartBlock {
+  width: 407px;
+  height: 533px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 43px;
+  background: linear-gradient(180deg, #4fdd88 0%, #87c5a7 100%);
+  box-shadow: 0px 13px 12px rgba(0, 0, 0, 0.15);
+  &:hover {
+    box-shadow: 0px 13px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(180deg, #71a285 0%, #87c5a7 100%);
+    cursor: pointer;
+  }
+}
+
+.addcart {
+  width: 50px;
+  height: 50px;
+}
+
+.elip {
+  position: absolute;
+  left: 146px;
+  top: 206px;
+}

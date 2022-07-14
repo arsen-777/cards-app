@@ -1,0 +1,11 @@
+.cardsContainer {
+  height: 925px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 95px 0 297px 0;
+}
+
+.cardsBlock {
+  position: relative;
+}

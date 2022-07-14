@@ -1,0 +1,87 @@
+.modalInfoBlock {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 20px 47px rgba(0, 0, 0, 0.25);
+  border-radius: 39px;
+}
+
+.modalInfo {
+  width: 802px;
+  height: 502px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  & .inpName {
+    width: 644px;
+    height: 44px;
+    border: 1px solid #e3e3e3;
+    background: #e3e3e3;
+    border-radius: 25px;
+  }
+  & .desc {
+    width: 644px;
+    height: 160px;
+    background: #e3e3e3;
+    border: 1px solid #e3e3e3;
+    border-radius: 25px;
+  }
+  & label {
+    display: flex;
+    flex-flow: column;
+    align-items: self-start;
+    margin-bottom: 7px;
+
+    // font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #6b6b6b;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.uploadImg {
+  width: 187px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: linear-gradient(90deg, #ffb763 0%, #ff5757 100%);
+  border-radius: 9px;
+  & p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff;
+  }
+}
+
+.uploadingBlock {
+  display: flex;
+  justify-content: start !important;
+  // align-items: flex-start;
+}
+
+.saveCard {
+  width: 110px;
+  height: 37px;
+  background: linear-gradient(90deg, #ffb763 0%, #ff5757 100%);
+  border-radius: 9px;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
