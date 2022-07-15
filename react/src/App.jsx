@@ -1,21 +1,12 @@
 import './App.css';
-
 import CardList from './components/cardList/CardList';
 import Header from './components/header/Header';
 import ModalInfoForm from './components/modalInfo/ModalInfoForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { addCard, toggleIsOpen } from './features/cardsSlice';
-import img from './images/card1.png';
+import { useSelector } from 'react-redux';
 
-import uuid from 'react-uuid';
+import EditModal from './components/editModal/EditModal';
 function App() {
-  const dispatch = useDispatch();
-  const { isOpen } = useSelector((state) => state.cards);
-
-  // const toggleModal = () => {
-  //   setIsOpenModal(!isOpenModal);
-  // };
+  const { isOpen, isEdited } = useSelector((state) => state.cards);
 
   return (
     <>
@@ -24,11 +15,9 @@ function App() {
         <CardList />
       </div>
       {isOpen && <ModalInfoForm />}
+      {isEdited && <EditModal />}
     </>
   );
 }
 
 export default App;
-
-//  const imageName = '1657827225221card1.png';
-//      <img src={`http://localhost:9000/api/files/${imageName}`} alt="" />

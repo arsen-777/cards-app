@@ -1,31 +1,38 @@
 import React from 'react';
-import styles from './ModalInfo.module.scss';
-import { useRef, useState } from 'react';
+import styles from './EditModal.module.scss';
+import { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
-import uploadSvg from '../../images/upload.svg';
-import { toggleIsOpen, addCard } from '../../features/cardsSlice';
-import { useDispatch } from 'react-redux';
-import uuid from 'react-uuid';
+// import axios from 'axios';
+// import uploadSvg from '../../images/upload.svg';
+// import useClickOutside from '../../hooks/useClickOutside';
+// import { toggleIsOpen, addCard } from '../../features/cardsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleIsEdited, addEditedCard } from '../../features/cardsSlice';
 
-const ModalInfoForm = ({ id }) => {
+const EditModal = () => {
   const dispatch = useDispatch();
   const modalRef = useRef(null);
   const filePicker = useRef(null);
   const handlePick = () => {
     filePicker.current.click();
   };
+  const { mostBeEdited, cards } = useSelector((state) => state.cards);
+  const mustBeEditedCard = cards.find((card) => card.id === mostBeEdited);
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [file, setFile] = useState(null);
+  const [changedTitle, setChangedTitle] = useState(mustBeEditedCard.title);
+  const [changedDesc, setChangedDesc] = useState(mustBeEditedCard.description);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const newCart = {
-      id: uuid(),
-      title: title,
-      description: desc,
+      id: mustBeEditedCard.id,
+      title: changedTitle,
+      description: changedDesc,
       date: new Date().toLocaleDateString(),
+      // image: file.name,
     };
     if (file) {
       const data = new FormData();
@@ -40,9 +47,9 @@ const ModalInfoForm = ({ id }) => {
     }
 
     try {
-      if (title.trim().length && desc.trim().length && file) {
-        dispatch(addCard(newCart));
-        dispatch(toggleIsOpen());
+      if (changedTitle.trim().length && changedDesc.trim().length && file) {
+        dispatch(addEditedCard(newCart));
+        dispatch(toggleIsEdited());
       }
     } catch (err) {
       console.log('error');
@@ -52,15 +59,15 @@ const ModalInfoForm = ({ id }) => {
   // useClickOutside(modalRef, () => toggleModal());
   return (
     <div ref={modalRef} className={styles.modalInfoBlock}>
-      <form className={styles.modalInfo} onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className={styles.modalInfo}>
         <div>
           <label htmlFor="name">Name</label>
           <input
             className={styles.inpName}
             type="text"
             name="name"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
+            onChange={(e) => setChangedTitle(e.target.value)}
+            value={changedTitle}
           />
         </div>
         <div>
@@ -69,8 +76,8 @@ const ModalInfoForm = ({ id }) => {
             className={styles.desc}
             type="text"
             name="desc"
-            onChange={(e) => setDesc(e.target.value)}
-            value={desc}
+            onChange={(e) => setChangedDesc(e.target.value)}
+            value={changedDesc}
           />
         </div>
         {title.length && desc.length && file ? (
@@ -86,11 +93,16 @@ const ModalInfoForm = ({ id }) => {
               type="file"
               accept="image/*"
             />
-            <div>
-              <div onClick={handlePick} className={styles.uploadImg}>
-                <img src={uploadSvg} alt="" />
-                <p>Upload Image</p>
+            <div className={styles.editModal}>
+              <div onClick={handlePick} className={styles.uploadedImg}>
+                <img
+                  src={`http://localhost:9000/api/files/${mustBeEditedCard.img}`}
+                  alt=""
+                />
               </div>
+              <button type="submit" className={styles.saveCard}>
+                SAVE
+              </button>
             </div>
           </div>
         )}
@@ -99,4 +111,4 @@ const ModalInfoForm = ({ id }) => {
   );
 };
 
-export default ModalInfoForm;
+export default EditModal;

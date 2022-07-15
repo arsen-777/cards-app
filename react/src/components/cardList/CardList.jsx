@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './CardList.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Card from '../card/Card';
 import AddCard from '../addCard/AddCard';
-import ModalInfoForm from '../modalInfo/ModalInfoForm';
 
 export default function CardList() {
-  const { cards, isOpen } = useSelector((state) => state.cards);
-
-  // console.log(isOpenModal, 'isOpenModal');
+  const { cards } = useSelector((state) => state.cards);
 
   return (
     <div className="cardsBlock">

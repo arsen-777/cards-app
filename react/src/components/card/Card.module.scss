@@ -7,8 +7,10 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  border-radius: 43px 43px 0px 0px;
+  border-radius: 43px;
   position: relative;
+  overflow: hidden;
+  gap: 8px;
 }
 
 .dateBlock {
@@ -53,7 +55,7 @@
   border: none;
   background: #f8af6c;
   border-radius: 9px;
-  // font-family: 'Montserrat';
+  cursor: pointer;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -69,6 +71,7 @@
 }
 
 .delete {
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,4 +88,9 @@
     width: 50%;
     height: 50%;
   }
+}
+
+.relative {
+  position: relative;
+  z-index: 2;
 }
